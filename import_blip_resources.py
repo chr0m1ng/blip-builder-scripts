@@ -1,7 +1,7 @@
 from requests import post
 from uuid import uuid4
 
-commands_url = 'https://msging.net/commands'
+commands_url = 'https://http.msging.net/commands'
 
 source_authorization = 'src_key'
 destination_authorizations = [

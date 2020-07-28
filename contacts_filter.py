@@ -4,7 +4,7 @@ import requests
 uri = '/contacts?$take={{take}}&$skip={{skip}}'
 
 
-url = 'https://msging.net/commands'
+url = 'https://http.msging.net/commands'
 uri = '/contacts?$take={{take}}&$skip={{skip}}'
 take = 10000
 skip = 0

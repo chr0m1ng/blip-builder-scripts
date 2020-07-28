@@ -20,7 +20,7 @@ TEAM_MEMBERS = config_json['members']
 
 BOTS = config_json['bots']
 
-COMMANDS_URL = 'https://msging.net/commands'
+COMMANDS_URL = 'https://http.msging.net/commands'
 SET_METHOD = 'set'
 
 ADMIN_PERMISSIONS = [
