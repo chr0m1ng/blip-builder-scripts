@@ -10,7 +10,7 @@ AUTHORIZATION = 'bot_key'
 
 # Do not modify
 
-COMMANDS_URL = 'https://msging.net/commands'
+COMMANDS_URL = 'https://http.msging.net/commands'
 SET_METHOD = 'set'
 
 ERROR_RULES = []

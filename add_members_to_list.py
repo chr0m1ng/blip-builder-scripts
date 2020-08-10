@@ -25,7 +25,7 @@ for m in members:
 
     try:
         command_res = session.post(
-            'https://msging.net/commands', json=command_body)
+            'https://http.msging.net/commands', json=command_body)
         command_res = command_res.json()
 
         if command_res['status'] != 'success':
