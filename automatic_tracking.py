@@ -53,21 +53,25 @@ TRACKING = {
 
 ENTERING_ACTIONS_KEY = '$enteringCustomActions'
 LEAVING_ACTIONS_KEY = '$leavingCustomActions'
+ACTIONS_KEY = '$contentActions'
+TITLE_KEY = '$title'
+INPUT_KEY = 'input'
+BYPASS_KEY = 'bypass'
 
 
 def is_automatic_tracking(action):
-    return action['$title'] == BASE_TRACKING['$title']
+    return action[TITLE_KEY] == BASE_TRACKING[TITLE_KEY]
 
 
 def has_input_bypass(state):
-    return '$contentActions' in state and\
-        'input' in state['$contentActions'][-1] and\
-        'bypass' in state['$contentActions'][-1]['input'] and\
-        state['$contentActions'][-1]['input']['bypass']
+    return ACTIONS_KEY in state and\
+        INPUT_KEY in state[ACTIONS_KEY][-1] and\
+        BYPASS_KEY in state[ACTIONS_KEY][-1][INPUT_KEY] and\
+        state[ACTIONS_KEY][-1][INPUT_KEY][BYPASS_KEY]
 
 
 if len(sys.argv) < 2:
-    print('usage: python add_tracking.py <file>')
+    print('usage: python automatic_tracking.py <file>')
     exit(-1)
 
 flow = []
