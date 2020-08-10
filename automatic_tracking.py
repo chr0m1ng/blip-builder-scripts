@@ -9,7 +9,6 @@ BASE_TRACKING = {
     'conditions': []
 }
 
-
 ROUTER_TRACKING = {
     **BASE_TRACKING,
     'settings': {
@@ -71,13 +70,17 @@ def has_input_bypass(state):
 
 
 if len(sys.argv) < 2:
-    print('usage: python automatic_tracking.py <file>')
+    print('usage: python automatic_tracking.py <file> <is router? y|n>')
     exit(-1)
 
 flow = []
 filename = sys.argv[1]
+is_router = len(sys.argv) > 2 and sys.argv[2] == 'y'
+
 with open(filename, 'r', encoding='utf-8') as f:
     flow = json.load(f)
+
+tracking = [ROUTER_TRACKING] if is_router else [TRACKING]
 
 for state_id, state in flow.items():
     if not has_input_bypass(state):
@@ -85,13 +88,13 @@ for state_id, state in flow.items():
             x for x in state[LEAVING_ACTIONS_KEY]
             if not is_automatic_tracking(x)
         ]
-        state[LEAVING_ACTIONS_KEY] = actions + [TRACKING]
+        state[LEAVING_ACTIONS_KEY] = actions + tracking
     else:
         actions = [
             x for x in state[ENTERING_ACTIONS_KEY]
             if not is_automatic_tracking(x)
         ]
-        state[ENTERING_ACTIONS_KEY] = [TRACKING] + actions
+        state[ENTERING_ACTIONS_KEY] = tracking + actions
 
 output_filename = f'{filename.split(".")[0]}-TRACKED.json'
 
