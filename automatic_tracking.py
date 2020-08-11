@@ -26,8 +26,8 @@ ROUTER_TRACKING = {
             '#tunnelOwner': '{{tunnel.owner}}',
             '#tunnelIdentity': '{{tunnel.identity}}'
         },
-        'category': 'flow',
-        'action': '{{state.name}} | {{state.id}}'
+        'category': '{{state.previous.name}}',
+        'action': '{{state.name}}'
     }
 }
 
@@ -45,8 +45,8 @@ TRACKING = {
             '#stateId': '{{state.id}}',
             '#messageId': '{{input.message@id}}'
         },
-        'category': 'flow',
-        'action': '{{state.name}} | {{state.id}}'
+        'category': '{{state.previous.name}}',
+        'action': '{{state.name}}'
     }
 }
 
