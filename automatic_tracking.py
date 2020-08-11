@@ -2,11 +2,29 @@
 import sys
 import json
 
+CATEGORY = 'state.previous.name'
+ACTION = 'state.name'
+
 BASE_TRACKING = {
     'type': 'TrackEvent',
     '$title': 'TRACKING AUTOMATICO',
     '$invalid': False,
-    'conditions': []
+    'conditions': [
+        {
+            '$$hashKey': 'object:4353',
+            'source': 'context',
+            'comparison': 'exists',
+            'values': [],
+            'variable': CATEGORY
+        },
+        {
+            '$$hashKey': 'object:4865',
+            'source': 'context',
+            'comparison': 'exists',
+            'values': [],
+            'variable': ACTION
+        }
+    ]
 }
 
 ROUTER_TRACKING = {
@@ -26,8 +44,8 @@ ROUTER_TRACKING = {
             '#tunnelOwner': '{{tunnel.owner}}',
             '#tunnelIdentity': '{{tunnel.identity}}'
         },
-        'category': '{{state.previous.name}}',
-        'action': '{{state.name}}'
+        'category': f'{{{{{CATEGORY}}}}}',
+        'action': f'{{{{{ACTION}}}}}'
     }
 }
 
@@ -45,8 +63,8 @@ TRACKING = {
             '#stateId': '{{state.id}}',
             '#messageId': '{{input.message@id}}'
         },
-        'category': '{{state.previous.name}}',
-        'action': '{{state.name}}'
+        'category': f'{{{{{CATEGORY}}}}}',
+        'action': f'{{{{{ACTION}}}}}'
     }
 }
 
